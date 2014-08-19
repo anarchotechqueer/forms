@@ -1,0 +1,79 @@
+{% extends "forms/template_form.html" %}
+
+{% block form_page_title %} Position of Special Trust {% endblock %}
+
+
+{% block form_link %}
+<a href="https://forms.security.utexas.edu/forms/specialtrust/">Position of Special Trust</a> &gt;
+{% endblock %}
+
+
+{% block form_title %}
+<td align="left" valign="top" width="98%">
+    <div class="ch-section-header">    
+        Position of Special Trust
+    </div>
+    <a id="content" name="content"></a>
+    <h1>Position of Special Administration</h1>
+    <h2>Find / delete user records</h2>
+    <div class="feedback">
+		<strong>Employee EID:</strong>
+		<form method="post">{% csrf_token %}
+			<input type="text" name="eid" maxlength="16" value="{{ person.eid }}">
+			<input type="submit" value="Search">
+		</form>
+	</div>
+	{% if entries|length %}
+    	<table id="subordinates">
+            <thead>
+                <tr>
+                    <th>department</th>
+					<th>manager</th>
+					<th>signed on</th>
+					<th>agreed?</th>
+					<th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for entry in entries %}
+                <tr>
+					<td>{{ entry.0 }}</td>
+					<td>{{ entry.1 }}</td>
+					<td>{{ entry.2 }}</td>
+					<td>{{ entry.3 }}</td>
+					<td>
+						<form method="post">{% csrf_token %}
+							<input type="hidden" name="eid" value="{{ person.eid }}">
+							<input type="hidden" name="timestamp" value="{{ entry.2 }}">
+							<input type="hidden" name="delete" value="1">
+							<input type="submit" value="Delete">
+						</form>
+					</td>
+				</tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+    	<div class="feedback">No PoST entries on record for {{ person.EID }}</div>
+    {% endif %}
+	<table>
+		<thead>
+			<tr>
+				<td>department</td>
+				<td>manager</td>
+				<td>signed on</td>
+				<td>agreed?</td>
+				<td></td>
+			</tr>
+		</thead>
+		<tbody>
+			
+
+		</tbody>
+	</table>
+	<h2>Dump active entries</h2>
+	<div class="feedback">
+		<div>Generate a list of <a href="dump_current/">PoST entries</a> completed within the last year.</div>
+	</div>
+
+{% endblock %}

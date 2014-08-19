@@ -1,0 +1,50 @@
+{% extends "forms/template_form.html" %}
+
+{% block form_page_title %} Position of Special Trust {% endblock %}
+
+
+{% block form_link %}
+<a href="https://forms.security.utexas.edu/forms/specialtrust/">Position of Special Trust</a> &gt;
+{% endblock %}
+
+
+{% block form_title %}
+<td align="left" valign="top" width="98%">
+    <div class="ch-section-header">    
+        Position of Special Trust
+    </div>
+    <a id="content" name="content"></a>
+    <h1>Position of Special Trust - Manager View</h1>
+    <h2>Subordinates for EID {{ person.eid }} </h2>
+    {% if subordinates|length %}
+    	<table id="subordinates">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>EID</th>
+                    <th>Title</th>
+                    <th>Email</th>
+                    <th>Last Submission</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for subordinate in subordinates %}
+                <tr>
+                    <td>{{ subordinate.2 }}</td>
+                    <td><a href="?{{ subordinate.0 }}">{{ subordinate.0 }}</a></td>
+                    <td>{{ subordinate.1 }}</td>
+                    <td>{{ subordinate.3 }}</td>
+                    <td>{{ subordinate.4 }}</td>
+                    <td>{{ subordinate.5 }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+    	<p>There are no subordinates designated in positions of special trust.</p>
+    {% endif %}
+    <br>
+    <br>
+    <p class="hilight">Please note that all of the presented subordinate information is obtained from the campus Human Resources Management System (HRMS). Please consult with your local HR representative if you believe any of the subordinate information is incorrect.</p>
+{% endblock %}

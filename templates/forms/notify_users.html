@@ -1,0 +1,14 @@
+{{ l }}
+<h1>Notify Users</h1>
+{{ users_count }}<br><br>
+
+{% for item in users_to_notify %}
+	{{ item.0 }}, {{ item.1 }}, {{ item.2 }}, {{ item.3 }}, {{ item.4 }}, {{ item.5 }}<br>
+{% endfor %}
+
+<h1>Unable to notify</h1>
+{{ unable_count }}
+<br>
+{% for item in unable_to_notify %}
+	{{ item }}<br>
+{% endfor %}

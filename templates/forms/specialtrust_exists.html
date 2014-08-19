@@ -1,0 +1,31 @@
+{% extends "forms/template_form.html" %}
+
+{% block form_page_title %} Position of Special Trust {% endblock %}
+
+
+{% block form_link %}
+<a href="https://forms.security.utexas.edu/forms/specialtrust/">Position of Special Trust</a> &gt;
+{% endblock %}
+
+
+{% block form_title %}
+<td align="left" valign="top" width="98%">
+    <div class="ch-section-header">    
+        Position of Special Trust
+    </div>
+    <a id="content" name="content"></a>
+    <h1>Position of Special Trust Form</h1>
+    <div>
+		You last completed a permission of special trust form on {{ last_date.last_date }}.
+		You may download a copy of the <a href="../download/">completed form</a> for your records.
+	</div>
+	<br>
+	<div>
+		There is no need to resubmit your selection at this time, as the form only needs to be completed once per year.
+	</div>
+	<br>
+	<div>
+		However, you may <a href="/forms/specialtrust/?skip_check=1">resubmit</a> your selection now if you would prefer not to wait for the full year.
+	</div>
+
+{% endblock %}

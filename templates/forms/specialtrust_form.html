@@ -1,0 +1,117 @@
+{% extends "forms/template_form.html" %}
+
+{% block form_page_title %} Position of Special Trust Form {% endblock %}
+
+
+{% block form_link %}
+<a href="https://forms.security.utexas.edu/forms/specialtrust/">Position of Special Trust</a> &gt;
+{% endblock %}
+
+
+{% block form_title %}
+<td align="left" valign="top" width="98%">
+    <div class="ch-section-header">
+        Position of Special Trust
+    </div><a id="content" name="content"></a>
+    <h1>Position of Special Trust Form</h1>
+
+<!--
+	<p class="userinfo" style="padding: 5px; background-color: rgb(204, 204, 204);"><strong>IT Custodian’s Name:</strong> Nova H Courtois<br>
+	<strong>IT Custodian’s Title:</strong> Student Technician<br>
+	<strong>IT Custodian’s Phone Number:</strong> <br>
+	<strong>IT Custodian’s E-mail Address:</strong> courtois1337@gmail.com</p>s
+-->
+
+<div class="feedback">
+	<table>
+		<tbody>
+			<tr>
+				<td><strong>Employee EID:</strong></td>
+				<td>{{ info.eid }}</td>
+			</tr>
+			<tr>
+				<td><strong>Employee Name:</strong></td>
+				<td>{{ info.name }}</td>
+			</tr>
+			<tr>
+				<td><strong>Title:</strong></td>
+				<td>{{ info.title }}</td>
+			</tr>
+			<tr>
+				<td><strong><label for="manager">EID of Manager:</label></strong></td>
+				<td>
+					<input type="text" id="manager" name="manager" size="12" maxlength="12" value="{{ info.manager_eid }}">
+					<input type="submit" name="agree" value="Check EID">
+				</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><i id="eidlookup">{{ info.manager_name}}</i></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><a href="https://utdirect.utexas.edu/webapps/eidlisting/">Look up EIDs here.</a></td>
+			</tr>
+			<tr>
+				<td><strong>Room Number:</strong></td>
+				<td> {{info.room }} </td>
+			</tr>
+			<tr>
+				<td><strong>Office Phone:</strong></td>
+				<td> {{ info.phone }}</td>
+			</tr>
+			<tr>
+				<td><strong>Department:</strong></td>
+				<td><span>{{ info.dept }}</span></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><a href="https://utdirect.utexas.edu/dept/index.WBX">Look up department codes here.</a></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<p>References:<p>
+<ul>
+	<li><a href="http://security.utexas.edu/policies/aup.html">UT Austin Acceptable Use Policy</a> (section V, rule 11)</li>
+	<li><a href="http://security.utexas.edu/policies/irusp.html">UT Austin Information Resources Use and Security Policy</a> (section V, item 4)</li>
+	<li><a href="http://www.utsystem.edu/policy/policies/uts165.html">UT System Information Resources Use and Security Policy</a> (section 4)</li>
+	<li><a href="http://info.sos.state.tx.us/pls/pub/readtac$ext.ViewTAC?tac_view=5&amp;ti=1&amp;pt=10&amp;ch=202&amp;sch=C&amp;rl=Y">Texas Administrative Code 202</a> (Rule 202.75, 7.C)</li>
+	<li><a href="http://www.statutes.legis.state.tx.us/Docs/PE/htm/PE.33.htm">Texas Computer Crimes Act</a></li>
+</ul>
+<p>
+	I acknowledge my role as a <a href="http://www.utexas.edu/iso#GL_Custodian">Custodian</a> of The University of Texas at Austin Information Resources. I realize that I have been assigned duties that will bring me in contact with information or information resources that are of value to the university and that require confidentiality and protection. I further acknowledge that I am required to uphold  university policies and standards to safeguard the information and associated resources that are entrusted to me or with which I have contact. I agree to report iolations of policies, standards, procedures, or guidelines that come to my attention to my supervisor and/or the Information Security Office.
+</p>
+<p>
+	I understand and agree that violations of university policies, standards, and procedures pertaining to custodians of the university's Information Resources and confidential information shall be subject to disciplinary action up to and including termination.
+</p>
+{% endblock %}
+
+
+{% block form_location %}
+<form action='/forms/specialtrust/' method='post'>{% csrf_token %}
+
+{% for field in form %}
+	<table>
+		{% for item in field %}
+			<tr>
+				<td style="width:8em;">
+					{{item}}
+				</td>
+				<td>
+				{% if forloop.first %}
+				By selecting this option, I acknowledge my awareness of and concurrence with this responsibility.
+				{% else %}
+					I do not wish to be in a position with such responsibility.
+				{% endif %}
+				</td>
+			</tr>
+		{% endfor %}
+
+	</table>
+{% endfor %}
+		
+<p>Your selection will be submitted to your respective department head and the Information Security Office.</p>
+<input type='submit' value='Submit' />
+</form>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "forms/template_form.html" %}
+
+{% block form_page_title %} Security Exception Report {% endblock %}
+
+
+{% block form_link %}
+<a href="https://forms.security.utexas.edu/forms/exception/">Security Exception Report</a> &gt;
+{% endblock %}
+
+
+{% block form_title %}
+<td align="left" valign="top" width="98%">
+    <div class="ch-section-header">
+        Security Exception Report
+    </div><a id="content" name="content"></a>
+
+<h1>Information Security Office Stolen Equipment Notification Report</h1>
+<h2>Before Submitting this Report</h2>
+		<p>If you have not already contacted the UT Police Department at 
+512-471-4441 to file a police report about your stolen device, please do so as soon as possible.</p>
+        <h2>Stolen Equipment Notification Report Form</h2>
+		  			
+
+
+
+
+<!--     <p class="userinfo" style="padding: 5px; background-color: rgb(204, 204, 204);"><strong>IT Custodian’s Name:</strong> Nova H Courtois<br>
+	<strong>IT Custodian’s Title:</strong> Student Technician<br>
+	<strong>IT Custodian’s Phone Number:</strong> <br>
+	<strong>IT Custodian’s E-mail Address:</strong> courtois1337@gmail.com</p> -->
+{% endblock %}
+
+
+{% block form_location %}
+<form action='exception_form.html' method='post'>{% csrf_token %}
+
+{% for field in form %}
+<p>
+{{ field.label_tag }} <br>
+{{ field }}
+</p>
+{% endfor %}
+
+<input type='submit' value='Submit' />
+
+</form>
+{% endblock %}

@@ -1,0 +1,38 @@
+<h1>Special Trust Users</h1>
+{% for item in special_trust_users %}
+	{{item.0}} {{item.1}} {{item.2}}<br>
+{% endfor %}
+<br>----------<br>
+<h1>active users</h1>
+{% for item in active_people %}
+	{{item.0}} {{item.1}}<br>
+{% endfor %}
+<br>----------<br>
+<h1>quarterly summaries</h1>
+{% for item in aoeu %}
+	{{ item.0 }}<br>
+	{{ item.1 }}<br>
+	{% if not item.2.items %}
+		none
+	{% endif %}
+	{% for key, value in item.2.items %}
+		{{ key }} ({{ value }}),  
+	{% endfor %}
+	<br>
+	{% if not item.3.items %}
+		none
+	{% endif %} 
+	{% for key, value in item.3.items %}
+		{{ key }} ({{ value }}),  
+	{% endfor %}
+	<br>
+{% endfor %}
+<h1>Managers No email</h1>
+{% for key, value in managers_no_email.items %}
+	{{ key }}, {{ value }}<br>
+{% endfor %}
+
+<h1>other people</h1>
+{% for item in other_people %}
+	{{ item }}<br>
+{% endfor %}
